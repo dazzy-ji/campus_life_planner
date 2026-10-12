@@ -1,0 +1,337 @@
+:root {
+  --primary-color: #9F8C76;
+  --primary-hover: #9F8C76;
+  --bg-color: #f8f9fa;
+  --surface-color: #f5e0bc;
+  --text-main: #202124;
+  --text-muted: #5f6368;
+  --border-color: #dadce0;
+  --error-color: #d93025;
+  --success-color: #188038;
+  --focus-ring: 2px solid #9F8C76;
+  --transition-speed: 0.2s ease-in-out;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 16px;
+}
+
+.skip-link{
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    z-index: 100;
+    text-decoration: none;
+    font-weight: bold;
+    transition: top var(--transition-speed);
+}
+
+.skip-link:focus{
+    top: 0;
+}
+
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible{
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+}
+
+header{
+    background: var(--surface-color);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.header-container{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+header h1{
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.menu-toggle{
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    border-radius: 4px;
+}
+.menu-toggle:focus-visible{
+    outline: var(--focus-ring);
+}
+
+.hamburger-line{
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-menu{
+    display: none;
+    flex-direction: column;
+    margin-top: 12px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 12px;
+    animation: fadeIn 0,2s ease-in-out;
+}
+
+.nav-menu.open{
+    display: flex;
+}
+.nav-menu ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-menu a{
+    display: block;
+    text-decoration: none;
+    color: var(--text-main);
+    padding: 10px 112px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+nav a:hover,
+nav a[aria-current="page"]{
+    background: rgba(26, 115, 232, 0.1);
+    color: var(--primary-color);
+}
+
+@keyframes fadeIn{
+    from{ opacity: 0; transform: translateY(-8px);}
+    to{ opacity: 1; transform: translateY(0);}
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+section{
+    background: var(--surface-color);
+    padding: 20px 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+h2{
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 8px;
+}
+
+.metrics-grid{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.card{
+    background: var(--bg-color);
+    padding: 14px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-left: 4px solid var(--primary-color);
+}
+
+.alert-box{
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.alert-box.normal{
+    background: #e6f4ea;
+    color: var(--success-color);
+}
+
+.alert-box.exceeded{
+    background: #fce8e6;
+    color: var(--error-color);
+}
+
+.controls-bar{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.search-group, .aort-group{
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    background: var(--bg-color);
+    color: var(--text-main);
+    transition: border-color var(--transition-speed);
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+}
+
+.table-responsive{
+    width: 100%;
+    overflow-x: auto;
+}
+
+table{
+    margin-top: 15px;
+    width: 100%;
+    border-collapse: separate;
+    border: 1px solid white;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+
+th, td{
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th{
+    background: var(--bg-color);
+    font-weight: 600;
+}
+
+mark{
+    background-color: #fef08a;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label{
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    min-height: 1.2rem;
+}
+
+button[type="submit"],
+button[type="button"],
+.file-upload-label{
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    transition: background var(--transition-speed), transform 0.1s ease;
+}
+
+button:hover,
+.file-upload-label:hover{
+    background: var(--primary-hover);
+}
+
+button:active{
+    transform: scale(0.98);
+}
+
+.settings-card{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.backup-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+footer{
+    text-align: center;
+    padding: 20px 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 20px;
+}

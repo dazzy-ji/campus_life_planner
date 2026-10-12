@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life Planner</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content </a>
+
+    <header role = "banner">
+        <div class="header-container">
+            <!-- nav toggle button -->
+             <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-label="Togglenavigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+             </button>
+
+             <h1>Campus Life Planner</h1>
+        </div>
+        <nav role = "navigation" id="nav-menu" aria-label="Main Navigation" class="nav-menu">
+            <ul>
+                <li><a href="#dashboard" aria-current="page">Dashboard</a></li>
+                <li><a href="#records">Tasks</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main id="main-content">
+        <div id="announcer" aria-live="polite" class="sr-only"></div>
+        
+        <!-- Dashboard -->
+         <section id="dashboard" aria-labelledby="dashboard-heading">
+            <h2 id="dashboard-heading">Dashboard</h2>
+            <div class="metrics">
+                <div class="card">Total Items: <span id="stat-count">0</span></div>
+                <div class="card">Total Duration: <span id="stat-count">0</span></div>
+                <div class="card">Top Tag: <span id="stat-count">-</span></div>
+            </div>
+            <div id="alert-box" class="alert-box" aria-live="polite"></div>
+         </section>
+
+         <!-- Records and Search -->
+          <section id="records-section" aria-labelledby="records-heading">
+            <h2 id="records-heading">Tasks</h2>
+
+            <div class="control-bar">
+                <div class="search-group">
+                    <label for="search-input">Search:</label>
+                    <input type="text" id="search-input" placeholder="e.g. tag:Study">
+                    <label><input type="checkbox" id="case-sensitive-toggle">Match Case</label>
+                </div>
+
+                <div class="sort-group">
+                    <select id="sort-select" aria-label="Sort records">
+                        <option value="date-desc">Date (Latest)</option>
+                        <option value="date-asc">Date (Earliest)</option>
+                        <option value="duration-desc">Duration (High to Low)</option>
+                        <option value="duration-asc">Duration (Low to High)</option>
+                        <option value="date-desc">Title (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id = "records-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>Tag</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+          </section>
+
+          <!-- Add/Edit Form -->
+           <section id="add-edit-section" aria-labelledby="form-heading">
+            <h2 id="form-heading">Add / Edit Task</h2>
+            <form id="record-form" novalidate>
+                <input type="hidden" id="record-id">
+
+                <div class="form-group">
+                    <label for="title-input">Title:</label>
+                    <input type="text" id="title-input" required aria-describedby="title-error">
+                    <span id="title-error" class="error-message" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="duration-input">Duration:</label>
+                    <input type="number" step="1" id="duration-input" required aria-describedby="duration-error">
+                    <span id="duration-error" class="error-message" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="tag-input">Tag:</label>
+                    <input type="text" id="tag-input" required aria-describedby="tag-error">
+                    <span id="tag-error" class="error-message" role="alert"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="date-input">Due Date:</label>
+                    <input type="date" id="date-input" required aria-describedby="date-error">
+                    <span id="date-error" class="error-message" role="alert"></span>
+                </div>
+
+                <button type="submit" id="submit-btn">Save Record</button>
+            </form>
+           </section>
+
+           <section id="settings" aria-labelledby="settings-heading">
+            <h2 id="settings-heading">Settings & Prefernces</h2>
+            <div class="settings-cards">
+                <label for="time-unit-select">Display Time Unit:</label>
+                <select name="time-unit-select">
+                    <option value="mins">Minutes</option>
+                    <option value="hours">Hours</option>
+                </select>
+
+                <label for="weekly-cap-input">Weekly Duration (<span id ="settings-unit-label">mins</span>):</label>
+                <input type="number" id="weekly-cap-input" value="600">
+
+                <div class="backup-actions">
+                    <button id="export-json-btn" type="button">Export JSON</button>
+                    <label class="file-upload-label">
+                        Import JSON <input type="file" id="import-json-file" accept=".json" hidden>
+                    </label>
+                </div>
+            </div>
+           </section>
+
+           <!-- About Section -->
+            <section id="about" aria-labelledby="about-heading">
+                <h2 id="about-heading">Campus Life Planner</h2>
+                <p>Purpose: Built for students to be able to organize and manage there tasks, including there studies and extracurricular activities.</p>
+                <p>Developer: Dazzy Indimuli | <a href="https://github.com/dazzy-ji" target="_blank">Github</a> | <a href="d.indimuli@alustudent.com">Email</a></p>
+            </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>Campus Life Planner | Summative</p>
+    </footer>
+
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
