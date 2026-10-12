@@ -1,0 +1,92 @@
+[
+  {
+    "id": "rec_0001",
+    "title": "Algorithms Assignment 3",
+    "duration": 120,
+    "tag": "Study",
+    "date": "2026-10-15",
+    "createdAt": "2026-10-01T08:00:00.000Z",
+    "updatedAt": "2026-10-01T08:00:00.000Z"
+  },
+  {
+    "id": "rec_0002",
+    "title": "Club Meeting room 4B",
+    "duration": 60,
+    "tag": "Extracurricular",
+    "date": "2026-10-12",
+    "createdAt": "2026-10-02T09:30:00.000Z",
+    "updatedAt": "2026-10-02T09:30:00.000Z"
+  },
+  {
+    "id": "rec_0003",
+    "title": "Database Systems Lab 12:00",
+    "duration": 90,
+    "tag": "Study",
+    "date": "2026-10-14",
+    "createdAt": "2026-10-03T10:15:00.000Z",
+    "updatedAt": "2026-10-03T10:15:00.000Z"
+  },
+  {
+    "id": "rec_0004",
+    "title": "Football practice session",
+    "duration": 75,
+    "tag": "Sports",
+    "date": "2026-10-11",
+    "createdAt": "2026-10-04T14:00:00.000Z",
+    "updatedAt": "2026-10-04T14:00:00.000Z"
+  },
+  {
+    "id": "rec_0005",
+    "title": "Responsible Enterprise Lecture prep prep",
+    "duration": 45,
+    "tag": "Study",
+    "date": "2026-10-13",
+    "createdAt": "2026-10-05T11:00:00.000Z",
+    "updatedAt": "2026-10-05T11:00:00.000Z"
+  },
+  {
+    "id": "rec_0006",
+    "title": "Student Council planning",
+    "duration": 60,
+    "tag": "Leadership",
+    "date": "2026-10-16",
+    "createdAt": "2026-10-06T15:20:00.000Z",
+    "updatedAt": "2026-10-06T15:20:00.000Z"
+  },
+  {
+    "id": "rec_0007",
+    "title": "Grocery run downtown",
+    "duration": 50,
+    "tag": "Personal",
+    "date": "2026-10-10",
+    "createdAt": "2026-10-07T16:00:00.000Z",
+    "updatedAt": "2026-10-07T16:00:00.000Z"
+  },
+  {
+    "id": "rec_0008",
+    "title": "Software Engineering Project discussion",
+    "duration": 100,
+    "tag": "Study",
+    "date": "2026-10-17",
+    "createdAt": "2026-10-08T12:00:00.000Z",
+    "updatedAt": "2026-10-08T12:00:00.000Z"
+  },
+  {
+    "id": "rec_0009",
+    "title": "Campus Music Concert",
+    "duration": 150,
+    "tag": "Social",
+    "date": "2026-10-18",
+    "createdAt": "2026-10-09T18:00:00.000Z",
+    "updatedAt": "2026-10-09T18:00:00.000Z"
+  },
+  {
+    "id": "rec_0010",
+    "title": "Resume review workshop",
+    "duration": 60,
+    "tag": "Career",
+    "date": "2026-10-19",
+    "createdAt": "2026-10-10T09:00:00.000Z",
+    "updatedAt": "2026-10-10T09:00:00.000Z"
+  }
+]
