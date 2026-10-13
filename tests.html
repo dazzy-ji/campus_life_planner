@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life Planner - Tests</title>
+    <style>
+        :root{
+            --primary-color: #9F8C76;
+            --surface-color: #f5e0bc;
+            --bg-color: #f8f9fa;
+            --text-main: #202124;
+            --border-color: #dadce0;
+        }
+        body{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 22px;
+            max-width: 780px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        h1{
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.38rem;
+        }
+        p.subtitle{
+            color: #5f6368;
+            margin-bottom: 20px;
+            font-size: 0.97rem;
+        }
+        .summary{
+            background: var(--surface-color);
+            padding: 14px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            font-weight: 500;
+            border: 1px solid rgba(159, 140 ,118, 0.3);
+        }
+        .test-case{
+            background: #ffffff;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+        }
+        .pass{
+            color: #188038;
+            font-weight: 700;
+            background: rgba(24, 128, 56, 0.1);
+            padding: 6px 8px;
+            border-radius: 6px;
+        }
+        .fail{
+            color: #d93025;
+            font-weight: 700;
+            background: rgba(217, 48, 37, 0.1);
+            padding: 6px 8px;
+            border-radius: 6px;
+        }
+        .back-link{
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Campus Life Planner Test</h1>
+    <p class="subtitle">Validations</p>
+
+    <div id="test-summary" class="summary">Executing tests</div>
+    <div id="test-results"></div>
+
+    <a href="index.html" class="back-link">Campus Life Planner Application</a>
+
+    <script type="module">
+        import { validateTitle, validateDuration, validateDate, validateTag, validateNoDuplicates } from './scripts/validators.js';
+        import { compileRegex, highlight } from './scripts/search.js';
+
+        let passedCount = 0;
+        let totalCount = 0;
+
+        function runTest(testName, assertionFn){
+            totalCount++;
+            const resultsContainer = document.getElementById('test-results');
+            const div = document.createElement('div');
+            div.className = 'test-case';
+            try{
+                const success = assertionFn();
+                if (success){
+                    passedCount++;
+                    div.innerHTML = `<span>${testName}</span> <span class="pass">PASSED</span>`;
+                } else{
+                    div.innerHTML = `<span>${testName}</span> <span class="fail">FAILED</span>`;
+                }
+            } catch (err){
+                div.innerHTML = `<span>${testName}</span> <span class="fail">ERROR: ${err.message}</span>`;
+            }
+            if (resultsContainer){
+                resultsContainer.appendChild(div);
+            }
+        }
+
+        runTest('Validate Title: accepts clean string', () => validateTitle('Algorithms Assignment') === true);
+        runTest('Validate Title: rejects leading whitespace', () => validateTitle('Algorithms') === false);
+        runTest('Validate Title: rejects double spaces', () => validateTitle('Algorithms Assignment') === false);
+
+        runTest('Validate Duration: accepts positive number', () => validateDuration(120) === true);
+        runTest('Validate Duration: accepts string number with decimals', () => validateDuration('45.5') === true);
+        runTest('Validate Duration: rejects zero or negative numbers', () => validateDuration(0) === false && validateDuration(-15) === false);
+
+        runTest('Validate Date: accepts alphabetic words and hyphens', () => validateDate('2026-10-15') === true);
+        runTest('Validate Date: rejects invalid date formats', () => validateDate('15-10-2026') === false);
+
+        runTest('Validate Tag: accepts alphabetic words and hyphens', () => validateTag('Extracurricular') === true);
+        runTest('Validate Tag: rejects numbers and special characters', () => validateTag('Study123') === false);
+
+        runTest('Validate Duplicate Words: flags consecutive duplicate words', () => validateNoDuplicates('Lecture prep prep') === false);
+        runTest('Validate Duplicate Words: passses normal unique word sequences', () => validateNoDuplicates('Lecture prep session') === true);
+
+        runTest('Compile Regex: creates valid RegEx opject from query', () => {
+            const reg = compileRegex('Study');
+            return reg instanceof RegExp && reg.test('Study');
+        });
+
+        runTest('Highlight: wraps matching text in <mark> tags', () => {
+            const reg = compileRegex('Lab');
+            const result = highlight('Database Systems Lab', reg);
+            return result.includes('<mark>Lab</mark');
+        });
+
+        const summaryContainer = document.getElementById('test-summary');
+        if(summaryContainer){
+            summaryContainer.textContent = `Completed ${totalCount} unit tests: ${passedCount} passed, ${totalCount - passedCount} failed.`;
+            if (passedCount === totalCount){
+                summaryContainer.style.background = '#d4edda';
+                summaryContainer.style.color = '#155274';
+                summaryContainer.style.borderColor = '#c3e6cb';
+            } else {
+                summaryContainer.style.background = '#f8d7da';
+                summaryContainer.style.color = '#721c24';
+                summaryContainer.style.borderColor = '#f5c6cb'
+            }
+        }
+    </script>
+</body>
+</html>
