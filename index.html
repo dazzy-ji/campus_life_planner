@@ -31,38 +31,54 @@
         </nav>
     </header>
     
-    <main id="main-content">
+    <main id="main-content" role="main">
         <div id="announcer" aria-live="polite" class="sr-only"></div>
         
         <!-- Dashboard -->
          <section id="dashboard" aria-labelledby="dashboard-heading">
             <h2 id="dashboard-heading">Dashboard</h2>
-            <div class="metrics">
-                <div class="card">Total Items: <span id="stat-count">0</span></div>
-                <div class="card">Total Duration: <span id="stat-count">0</span></div>
-                <div class="card">Top Tag: <span id="stat-count">-</span></div>
+            <div id="alert-box" class="alert-box normal" aria-live="polite">
+                Loading schedule metrics...
+            </div>
+            <div class="metrics-grid">
+                <div class="card metric-card">
+                    <h3>Total Items</h3>
+                    <p id="stat-count">0</p>
+                </div>
+                <div class="card metric-card">
+                    <h3>Total Duration</h3>
+                    <p><span id="stat-duration">0</span> <span id="unit-label-stat">mins</span></p>
+                </div>
+                <div class="card metric-card">
+                    <h3>Top Tag</h3>
+                    <p id="stat-top-tag">-</p>
+                </div>
             </div>
             <div id="alert-box" class="alert-box" aria-live="polite"></div>
          </section>
 
-         <!-- Records and Search -->
-          <section id="records-section" aria-labelledby="records-heading">
-            <h2 id="records-heading">Tasks</h2>
+         <!-- Tasks List and Search -->
+        <section id="tasks-list-section" aria-labelledby="records-heading">
+            <h2 id="records-heading">Tasks & Events</h2>
 
             <div class="control-bar">
                 <div class="search-group">
                     <label for="search-input">Search:</label>
-                    <input type="text" id="search-input" placeholder="e.g. tag:Study">
-                    <label><input type="checkbox" id="case-sensitive-toggle">Match Case</label>
+                    <input type="text" id="search-input" placeholder="Title or Tag">
                 </div>
-
+                <div class="filter-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="case-sensitive-toggle">Match Case
+                    </label>
+                </div>
                 <div class="sort-group">
+                    <label for="sort-select">Sort By: </label>
                     <select id="sort-select" aria-label="Sort records">
                         <option value="date-desc">Date (Latest)</option>
                         <option value="date-asc">Date (Earliest)</option>
                         <option value="duration-desc">Duration (High to Low)</option>
                         <option value="duration-asc">Duration (Low to High)</option>
-                        <option value="date-desc">Title (A-Z)</option>
+                        <option value="title-asc">Title (A-Z)</option>
                     </select>
                 </div>
             </div>
@@ -78,78 +94,83 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="table-body"></tbody>
+                    <tbody id="table-body">
+                        <!-- Dynamically Populated -->
+                    </tbody>
                 </table>
             </div>
-          </section>
+        </section>
 
           <!-- Add/Edit Form -->
-           <section id="add-edit-section" aria-labelledby="form-heading">
-            <h2 id="form-heading">Add / Edit Task</h2>
-            <form id="record-form" novalidate>
-                <input type="hidden" id="record-id">
+        <section id="task-form-section">
+            <h2 id="form-heading">Add New Task / Events</h2>
+            <form id="record-form" class="record-form">
+                <div id="form-error-message" class="error-text" role="alert"></div>
+                <input type="hidden" id="edit-record-id" value="">
 
-                <div class="form-group">
-                    <label for="title-input">Title:</label>
-                    <input type="text" id="title-input" required aria-describedby="title-error">
-                    <span id="title-error" class="error-message" role="alert"></span>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="input-title">Title:</label>
+                        <input type="text" id="input-title" required placeholder="e.g. Algorithms Assignment">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-duration">Duration (<span id="form-unit-label">mins</span>)</label>
+                        <input type="number" step="any" id="input-duration" required placeholder="e.g. 60">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-tag">Tag</label>
+                        <input type="text" id="input-tag" required placeholder="e.g. Study">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="input-date">Due Date:</label>
+                        <input type="date" id="input-date">
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="duration-input">Duration:</label>
-                    <input type="number" step="1" id="duration-input" required aria-describedby="duration-error">
-                    <span id="duration-error" class="error-message" role="alert"></span>
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn" class="btn-primary">Save Record</button>
+                    <button type="button" id="cancel-edit-btn" class="btn-secondary" style="display: none;">Cancel</button>
                 </div>
-
-                <div class="form-group">
-                    <label for="tag-input">Tag:</label>
-                    <input type="text" id="tag-input" required aria-describedby="tag-error">
-                    <span id="tag-error" class="error-message" role="alert"></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="date-input">Due Date:</label>
-                    <input type="date" id="date-input" required aria-describedby="date-error">
-                    <span id="date-error" class="error-message" role="alert"></span>
-                </div>
-
-                <button type="submit" id="submit-btn">Save Record</button>
             </form>
-           </section>
+        </section>
 
-           <section id="settings" aria-labelledby="settings-heading">
-            <h2 id="settings-heading">Settings & Prefernces</h2>
-            <div class="settings-cards">
-                <label for="time-unit-select">Display Time Unit:</label>
-                <select name="time-unit-select">
-                    <option value="mins">Minutes</option>
-                    <option value="hours">Hours</option>
-                </select>
-
-                <label for="weekly-cap-input">Weekly Duration (<span id ="settings-unit-label">mins</span>):</label>
-                <input type="number" id="weekly-cap-input" value="600">
-
+        <section id="settings" aria-labelledby="settings-heading">
+            <h2 id="settings-heading">Settings & Data Management</h2>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label for="unit-select">Display Time Unit:</label>
+                    <select id="unit-select">
+                        <option value="mins">Minutes</option>
+                        <option value="hours">Hours</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="cap-input">Weekly Duration (<span id ="settings-unit-label">mins</span>):</label>
+                    <input type="number" id="cap-input" value="600" step="any">
+                </div>
                 <div class="backup-actions">
-                    <button id="export-json-btn" type="button">Export JSON</button>
+                    <button id="export-json-btn" type="button" class="btn-secondary">Export JSON Backup</button>
                     <label class="file-upload-label">
-                        Import JSON <input type="file" id="import-json-file" accept=".json" hidden>
+                        Import JSON Backup <input type="file" id="import-json-input" accept=".json" style="display: none;">
                     </label>
                 </div>
-            </div>
-           </section>
-
-           <!-- About Section -->
-            <section id="about" aria-labelledby="about-heading">
-                <h2 id="about-heading">Campus Life Planner</h2>
-                <p>Purpose: Built for students to be able to organize and manage there tasks, including there studies and extracurricular activities.</p>
-                <p>Developer: Dazzy Indimuli | <a href="https://github.com/dazzy-ji" target="_blank">Github</a> | <a href="d.indimuli@alustudent.com">Email</a></p>
-            </section>
+        </section>
     </main>
+
+    <!-- About Section -->
+    <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">Campus Life Planner</h2>
+            <p>Purpose: Built for students to be able to organize and manage there tasks, including there studies and extracurricular activities.</p>
+            <p>Developer: Dazzy Indimuli | <a href="https://github.com/dazzy-ji" target="_blank">Github</a> | <a href="d.indimuli@alustudent.com">Email</a></p>
+    </section>
 
     <footer role="contentinfo">
         <p>Campus Life Planner | Summative</p>
     </footer>
 
-    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/state.js"></script>
 </body>
 </html>
