@@ -53,11 +53,11 @@ export function populateTable(records, settings, searchQuery, caseSensitive, sor
         tr.innerHTML = `
             <td>${selectedTitle}</td>
             <td>${showDuration} ${settings.timeUnit}</td>
-            <td>$<span class="badge">${selectedTag}</span></td>
+            <td><span class="badge">${selectedTag}</span></td>
             <td>${rec.date}</td>
             <td>
-                <button class = "btn-edit" data-id="${rec.id}">Edit</button>
-                <button class = "btn-delete" data-id="${rec.id}">Delete</button>
+                <button class="btn-edit" data-id="${rec.id}">Edit</button>
+                <button class="btn-delete" data-id="${rec.id}">Delete</button>
             </td>
         `;
         tableBody.appendChild(tr);
@@ -84,7 +84,7 @@ export function updateStats(records, settings){
 
     const tagCounts = {};
     records.forEach(r => {
-        tagCounts[r.tag] = (tagCounts[r.tag] || 0) + 1;
+        if (r.tag) tagCounts[r.tag] = (tagCounts[r.tag] || 0) + 1;
     });
     let topTag = '-';
     let maxCount = 0;
@@ -97,9 +97,9 @@ export function updateStats(records, settings){
     if (statTopTag) statTopTag.textContent = topTag;
 
     const cap = settings.weeklyCap;
-    const remaining = cap - totalMins;
+    const diff = Math.abs(cap - totalMins);
     const displayCap = settings.timeUnit === 'hours' ? (cap / 60).toFixed(1) : cap;
-    const displayRemaining = settings.timeUnit === 'hours' ? Math.abs(remaining / 60).toFixed(1) : Math.abs(remaining);
+    const displayDiff = settings.timeUnit === 'hours' ? (diff / 60).toFixed(1) : diff;
 
     const alertBox = document.getElementById('alert-box');
     const announcer = document.getElementById('announcer');
@@ -108,14 +108,51 @@ export function updateStats(records, settings){
         if(totalMins <= cap){
             alertBox.className = "alert-box normal";
             alertBox.setAttribute("aria-live", "polite");
-            alertBox.textContent = `On Track: ${displayRemaining} ${settings.timeUnit} remaining under your weekly cap of ${displayCap} ${settings.timeUnit}.`;
+            alertBox.textContent = `On Track: ${displayDiff} ${settings.timeUnit} remaining under your weekly cap of ${displayCap} ${settings.timeUnit}.`;
         } else{
             alertBox.className = "alert-box exceeded";
             alertBox.setAttribute("aria-live", "assertive");
-            alertBox.textContent = `Warning: Weekly cap exceeded by ${displayRemaining} ${settings.timeUnit}!`;
+            alertBox.textContent = `Warning: Weekly cap exceeded by ${displayDiff} ${settings.timeUnit}!`;
         }
     }
     if (announcer && alertBox){
         announcer.textContent = alertBox.textContent;
+    }
+
+    renderTrendChart(records, settings);
+}
+
+function renderTrendChart(records, settings) {
+    const chartContainer = document.getElementById('trend-chart');
+    if (!chartContainer) return;
+    chartContainer.innerHTML = '';
+
+    for (let i = 6; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const dateStr = d.toISOString().split('T')[0];
+
+        const dayMins = records
+            .filter(r => r.date === dateStr)
+            .reduce((sum, r) => sum + r.duration, 0);
+
+        const dayVal = settings.timeUnit === 'hours' ? (dayMins / 60) : dayMins;
+        const maxExpected = settings.timeUnit === 'hours' ? 4 : 240;
+        const heightPct = Math.min(100, Math.max(10, (dayVal / maxExpected) * 100));
+
+        const col = document.createElement('div');
+        col.style.cssText = "display: flex; flex-direction: column; align-items: center; flex: 1; height: 100%; justify-content: flex-end;";
+
+        const bar = document.createElement('div');
+        bar.style.cssText = `width: 100%; background-color: var(--primary-color); height: ${heightPct}%; border-radius: 4px 4px 0 0; transition: height 0.3s ease;`;
+        bar.title = `${dateStr}: ${dayVal.toFixed(1)} ${settings.timeUnit}`;
+
+        const label = document.createElement('span');
+        label.style.cssText = "font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;";
+        label.textContent = d.toLocaleDateString('en-US', { weekday: 'narrow' });
+
+        col.appendChild(bar);
+        col.appendChild(label);
+        chartContainer.appendChild(col);
     }
 }
