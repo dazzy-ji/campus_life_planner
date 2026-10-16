@@ -4,7 +4,7 @@ An accessible, responsive Single Page Application built with vanilla HTML5, CSS,
 
 * **Developer:** Dazzy Indimuli
 * **GitHub Repository:** https://github.com/dazzy-ji/
-* **Contact Email:** d.idimuli@alustudent.com
+* **Contact Email:** d.indimuli@alustudent.com
 * **Live Deployment:** https://github.com/dazzy-ji/campus_life_planner.git
 * **Demo Video:** https://youtu.be/rYsLmrlTf0s
 
