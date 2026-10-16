@@ -3,9 +3,9 @@
 An accessible, responsive Single Page Application built with vanilla HTML5, CSS, and modular ES6 JavaScript designed to helpstudents organize tasks, studies, and extracurricular activities.
 
 * **Developer:** Dazzy Indimuli
-* **GitHub Repository:** https://github.com/dazzy-ji/
+* **GitHub Username:** https://github.com/dazzy-ji/
 * **Contact Email:** d.indimuli@alustudent.com
-* **Live Deployment:** https://github.com/dazzy-ji/campus_life_planner.git
+* **GitHub Repository:** https://github.com/dazzy-ji/campus_life_planner.git
 * **Demo Video:** https://youtu.be/rYsLmrlTf0s
 
 ---
