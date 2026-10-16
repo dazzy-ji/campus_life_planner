@@ -62,30 +62,26 @@ The project includes an automated test suite verifying core validation and searc
 
 ## Sketches
 
-+-----------------------------------+
-| [Skip Link]                       |
-| CAMPUS LIFE PLANNER               |
-| [Nav: Dashboard | Records | ... ] |
-+-----------------------------------+
-| STATS DASHBOARD                   |
-| - Total Items: 10                 |
-| - Total Duration: 840 mins        |
-| - Top Tag: Study                  |
-+-----------------------------------+
-| SEARCH & SORT                     |
-| [Search regex...        ] [Match] |
-| [Sort by Date/Duration v]         |
-+-----------------------------------+
-| RECORDS STACK (Cards)             |
-| +-------------------------------+ |
-| | Algorithms Assignment 3       | |
-| | 120 mins | [Study] | 2026-10-15 | |
-| | [Edit] [Delete]               | |
-| +-------------------------------+ |
-+-----------------------------------+
-| ADD / EDIT FORM                   |
-| Title: [_____________________]    |
-| Duration: [________] mins         |
-| Tag: [___________] Date: [_____]  |
-| [ Save Record Button ]            |
-+-----------------------------------+
+```
++-----------------------------------------------------------------------------------+
+| [Skip Link] | CAMPUS LIFE PLANNER | [Nav: Dashboard | Records | Settings | About] |
++-----------------------------------------------------------------------------------+
+| STATS DASHBOARD                                                                   |
+| - Total Items: 10  |  - Total Duration: 840 mins  |  - Top Tag: Study             |
++-----------------------------------------------------------------------------------+
+| SEARCH & SORT                                                                     |
+| [Search regex...]  [Match Case]  [Sort by: Date (Latest) v]                       |
++-----------------------------------------------------------------------------------+
+| RECORDS TABLE / CARDS                                                             |
+| +-------------------------------------------------------------------------------+ |
+| | Title: Algorithms Assignment 3                                                | |
+| | Duration: 120 mins  |  Tag: Study  |  Date: 2026-10-15                       | |
+| | Actions: [Edit]  [Delete]                                                     | |
+| +-------------------------------------------------------------------------------+ |
++-----------------------------------------------------------------------------------+
+| ADD / EDIT FORM                                                                   |
+| Title: [                   ]   Duration: [    ] mins                              |
+| Tag:   [                   ]   Date:     [ YYYY-MM-DD ]                           |
+| [ Save Record Button ]                                                            |
++-----------------------------------------------------------------------------------+
+```
