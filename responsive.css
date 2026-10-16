@@ -1,5 +1,4 @@
-/* Tablet & Up */
-@media (min-width: 768px) {
+@media(min-width: 768px){
     body{
         padding: 24px;
         max-width: 720px;
@@ -16,7 +15,7 @@
     .menu-toggle{
         display: none !important;
     }
-
+    
     .header-container{
         gap: 0;
     }
@@ -44,7 +43,7 @@
     .nav-menu a{
         padding: 6px 10px;
     }
-    
+
     .metrics-grid{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -60,7 +59,7 @@
 
     .form-grid{
         grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        gap: 16px
     }
 
     .search-group{
@@ -71,12 +70,12 @@
         flex: 1;
     }
 
-    .settings-grid {
+    .settings-grid{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        gap: 16px
     }
-
+    
     .backup-actions{
         flex-direction: row;
     }
@@ -87,8 +86,7 @@
     }
 }
 
-/* Desktop */
-@media (min-width: 1024px) {
+@media (min-width: 1024px){
     body{
         max-width: 1000px;
     }

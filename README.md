@@ -6,7 +6,7 @@ An accessible, responsive Single Page Application built with vanilla HTML5, CSS,
 * **GitHub Repository:** https://github.com/dazzy-ji/
 * **Contact Email:** d.idimuli@alustudent.com
 * **Live Deployment:** https://github.com/dazzy-ji/campus_life_planner.git
-* **Demo Video:** 
+* **Demo Video:** https://youtu.be/rYsLmrlTf0s
 
 ---
 
@@ -57,3 +57,35 @@ The project includes an automated test suite verifying core validation and searc
 1. Open the project folder in your browser or local server.
 2. Navigate to **`tests.htm`** in your browser.
 3. The test runner will automatically execute assertion functions for validators, regex compilation, and text highlighting, displaying a pass/fail summary badge
+
+---
+
+## Sketches
+
++-----------------------------------+
+| [Skip Link]                       |
+| CAMPUS LIFE PLANNER               |
+| [Nav: Dashboard | Records | ... ] |
++-----------------------------------+
+| STATS DASHBOARD                   |
+| - Total Items: 10                 |
+| - Total Duration: 840 mins        |
+| - Top Tag: Study                  |
++-----------------------------------+
+| SEARCH & SORT                     |
+| [Search regex...        ] [Match] |
+| [Sort by Date/Duration v]         |
++-----------------------------------+
+| RECORDS STACK (Cards)             |
+| +-------------------------------+ |
+| | Algorithms Assignment 3       | |
+| | 120 mins | [Study] | 2026-10-15 | |
+| | [Edit] [Delete]               | |
+| +-------------------------------+ |
++-----------------------------------+
+| ADD / EDIT FORM                   |
+| Title: [_____________________]    |
+| Duration: [________] mins         |
+| Tag: [___________] Date: [_____]  |
+| [ Save Record Button ]            |
++-----------------------------------+

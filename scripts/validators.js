@@ -1,6 +1,6 @@
 export function validateTitle(title){
-    const regex = /\S(?:.*\S)?$/;
-    const doubleSpaces = /\s{2,}/.test(title)
+    const regex = /^\S(?:.*\S)?$/;
+    const doubleSpaces = /\s{2,}/.test(title);
     return regex.test(title) && !doubleSpaces;
 }
 

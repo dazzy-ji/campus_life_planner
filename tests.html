@@ -114,8 +114,8 @@
         }
 
         runTest('Validate Title: accepts clean string', () => validateTitle('Algorithms Assignment') === true);
-        runTest('Validate Title: rejects leading whitespace', () => validateTitle('Algorithms') === false);
-        runTest('Validate Title: rejects double spaces', () => validateTitle('Algorithms Assignment') === false);
+        runTest('Validate Title: rejects leading whitespace', () => validateTitle(' Algorithms') === false);
+        runTest('Validate Title: rejects double spaces', () => validateTitle('Algorithms  Assignment') === false);
 
         runTest('Validate Duration: accepts positive number', () => validateDuration(120) === true);
         runTest('Validate Duration: accepts string number with decimals', () => validateDuration('45.5') === true);

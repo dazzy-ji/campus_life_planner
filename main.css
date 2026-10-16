@@ -66,12 +66,15 @@ select:focus-visible{
 }
 
 header{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background: var(--surface-color);
     padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px; /* Adjusted corners for a smoother top-docked look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); /* Enhanced shadow to separate it from scrolling content */
     margin-bottom: 20px;
-    border: 1px solid rgba(159,140,118,0.2);
+    border: 1px solid rgba(159, 140, 118, 0.2);
 }
 
 .header-container{
