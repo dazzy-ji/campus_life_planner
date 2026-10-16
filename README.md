@@ -10,6 +10,24 @@ An accessible, responsive Single Page Application built with vanilla HTML5, CSS,
 
 ---
 
+## Setup & Installation Guide
+
+Follow these steps to run the Campus Life Planner locally on your system:
+
+### Prerequisites
+- Any modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, or Apple Safari).
+- [VS Code](https://code.visualstudio.com/) with the **Live Server** extension for local development.
+
+### Running Locally
+1. **Clone the Repository:**
+   ```bash
+   git clone [https://github.com/dazzy-ji/campus_life_planner.git](https://github.com/dazzy-ji/campus_life_planner.git)
+   cd campus-life-planner
+
+2. Using Visual Studio code, move into the **`index.html`** file and run the file using **Live Server**
+
+---
+
 ## Features List
 - **Responsive Semantic Layout:** Mobile-first architecture featuring FlexBox, CSS Grid, and custom media queries across breakpoints(~360px, 768px, 1024px).
 - **Dynamic CRUD Workflows:** Add, edit, and delete tasks/events withreal-time state updates and auto-saving to browser `localStorage`. 
@@ -55,7 +73,7 @@ The application incorporates strict validation rules and pattern matching:
 
 The project includes an automated test suite verifying core validation and search logic.
 1. Open the project folder in your browser or local server.
-2. Navigate to **`tests.htm`** in your browser.
+2. Navigate to **`tests.html`** in your browser.
 3. The test runner will automatically execute assertion functions for validators, regex compilation, and text highlighting, displaying a pass/fail summary badge
 
 ---
